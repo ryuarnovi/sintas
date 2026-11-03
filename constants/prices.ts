@@ -1,0 +1,211 @@
+/**
+ * @file Price Engine Models & Seasonal Planting Data - Canonical price series, waterfall parameters, and planting windows.
+ */
+
+import type { CommodityPriceModel, PlantingWindow, ScannerCommodityId } from "@/types/landing";
+
+export const COMMODITY_PRICE_MODELS: Readonly<Record<ScannerCommodityId, CommodityPriceModel>> = {
+  tomat: {
+    id: "tomat",
+    name: "Tomat Apel",
+    unit: "kg",
+    referencePrice: 7980,
+    deliveryEstimatePerKg: 1200,
+    platformFeeRate: 0.05, // Rp399 on Rp7.980
+    riskReserveRate: 0.04, // Rp319 on Rp7.980 -> Net Farmer = Rp6.062 (~Rp6.060 canonical doc example)
+    floorCostPerKg: 4200,
+    supplyFactor: 1.0,
+    freshnessDiscountByGrade: {
+      A: 1.0,
+      B: 0.92,
+      C: 0.78,
+      D: 0.65,
+    },
+    harvestAdviceNote:
+      "Pasokan tomat Jawa Tengah terkendali minggu ini. Grade A terserap cepat oleh 14 dapur MBG dan katering.",
+    series: [
+      { dayLabel: "H-20", dayOffset: -20, isForecast: false, pricesByGrade: { A: 7200, B: 5100, C: 2400, D: 900 } },
+      { dayLabel: "H-15", dayOffset: -15, isForecast: false, pricesByGrade: { A: 7500, B: 5300, C: 2500, D: 950 } },
+      { dayLabel: "H-10", dayOffset: -10, isForecast: false, pricesByGrade: { A: 7400, B: 5200, C: 2450, D: 900 } },
+      { dayLabel: "H-5", dayOffset: -5, isForecast: false, pricesByGrade: { A: 7800, B: 5450, C: 2600, D: 1000 } },
+      { dayLabel: "Hari Ini", dayOffset: 0, isForecast: false, pricesByGrade: { A: 7980, B: 5430, C: 2240, D: 830 } },
+      {
+        dayLabel: "H+5",
+        dayOffset: 5,
+        isForecast: true,
+        pricesByGrade: { A: 8350, B: 5700, C: 2400, D: 900 },
+        forecastBand: { low: 7750, high: 8900 },
+      },
+      {
+        dayLabel: "H+10",
+        dayOffset: 10,
+        isForecast: true,
+        pricesByGrade: { A: 8600, B: 5900, C: 2550, D: 950 },
+        forecastBand: { low: 7900, high: 9300 },
+      },
+      {
+        dayLabel: "H+14",
+        dayOffset: 14,
+        isForecast: true,
+        pricesByGrade: { A: 8450, B: 5800, C: 2500, D: 920 },
+        forecastBand: { low: 7700, high: 9200 },
+      },
+    ],
+  },
+  selada: {
+    id: "selada",
+    name: "Selada Keriting",
+    unit: "kg",
+    referencePrice: 9600,
+    deliveryEstimatePerKg: 1400,
+    platformFeeRate: 0.05,
+    riskReserveRate: 0.04,
+    floorCostPerKg: 5400,
+    supplyFactor: 1.0,
+    freshnessDiscountByGrade: {
+      A: 1.0,
+      B: 0.88,
+      C: 0.72,
+      D: 0.6,
+    },
+    harvestAdviceNote:
+      "Untuk Grade A–B harga masih di atas batas bawah biaya petani. Bila sudah turun ke Grade C, alihkan ke pra-jual pakan agar tidak merugi biaya kemas.",
+    series: [
+      { dayLabel: "H-20", dayOffset: -20, isForecast: false, pricesByGrade: { A: 11200, B: 7400, C: 3100, D: 1100 } },
+      { dayLabel: "H-15", dayOffset: -15, isForecast: false, pricesByGrade: { A: 10400, B: 6900, C: 2900, D: 1050 } },
+      { dayLabel: "H-10", dayOffset: -10, isForecast: false, pricesByGrade: { A: 9800, B: 6500, C: 2700, D: 950 } },
+      { dayLabel: "H-5", dayOffset: -5, isForecast: false, pricesByGrade: { A: 9400, B: 6200, C: 2550, D: 900 } },
+      { dayLabel: "Hari Ini", dayOffset: 0, isForecast: false, pricesByGrade: { A: 9600, B: 6250, C: 2480, D: 920 } },
+      {
+        dayLabel: "H+5",
+        dayOffset: 5,
+        isForecast: true,
+        pricesByGrade: { A: 10100, B: 6600, C: 2650, D: 980 },
+        forecastBand: { low: 9200, high: 10900 },
+      },
+      {
+        dayLabel: "H+10",
+        dayOffset: 10,
+        isForecast: true,
+        pricesByGrade: { A: 10650, B: 7000, C: 2800, D: 1050 },
+        forecastBand: { low: 9600, high: 11600 },
+      },
+      {
+        dayLabel: "H+14",
+        dayOffset: 14,
+        isForecast: true,
+        pricesByGrade: { A: 10900, B: 7200, C: 2900, D: 1100 },
+        forecastBand: { low: 9800, high: 12000 },
+      },
+    ],
+  },
+  sawi: {
+    id: "sawi",
+    name: "Sawi Hijau (Caisim)",
+    unit: "kg",
+    referencePrice: 6400,
+    deliveryEstimatePerKg: 1000,
+    platformFeeRate: 0.05,
+    riskReserveRate: 0.04,
+    floorCostPerKg: 3600,
+    supplyFactor: 1.0,
+    freshnessDiscountByGrade: {
+      A: 1.0,
+      B: 0.9,
+      C: 0.75,
+      D: 0.62,
+    },
+    harvestAdviceNote:
+      "Permintaan sawi untuk siklus menu katering & warung stabil. Hindari panen siang hari agar daun tidak cepat turun ke Grade B.",
+    series: [
+      { dayLabel: "H-20", dayOffset: -20, isForecast: false, pricesByGrade: { A: 5900, B: 4100, C: 1900, D: 750 } },
+      { dayLabel: "H-15", dayOffset: -15, isForecast: false, pricesByGrade: { A: 6100, B: 4250, C: 1950, D: 780 } },
+      { dayLabel: "H-10", dayOffset: -10, isForecast: false, pricesByGrade: { A: 6250, B: 4350, C: 2050, D: 800 } },
+      { dayLabel: "H-5", dayOffset: -5, isForecast: false, pricesByGrade: { A: 6300, B: 4400, C: 2100, D: 820 } },
+      { dayLabel: "Hari Ini", dayOffset: 0, isForecast: false, pricesByGrade: { A: 6400, B: 4260, C: 1730, D: 640 } },
+      {
+        dayLabel: "H+5",
+        dayOffset: 5,
+        isForecast: true,
+        pricesByGrade: { A: 6700, B: 4500, C: 1850, D: 700 },
+        forecastBand: { low: 6200, high: 7200 },
+      },
+      {
+        dayLabel: "H+10",
+        dayOffset: 10,
+        isForecast: true,
+        pricesByGrade: { A: 6950, B: 4700, C: 1950, D: 740 },
+        forecastBand: { low: 6350, high: 7550 },
+      },
+      {
+        dayLabel: "H+14",
+        dayOffset: 14,
+        isForecast: true,
+        pricesByGrade: { A: 7100, B: 4850, C: 2000, D: 780 },
+        forecastBand: { low: 6450, high: 7750 },
+      },
+    ],
+  },
+  cabai: {
+    id: "cabai",
+    name: "Cabai Merah Keriting",
+    unit: "kg",
+    referencePrice: 28500,
+    deliveryEstimatePerKg: 1800,
+    platformFeeRate: 0.05,
+    riskReserveRate: 0.04,
+    floorCostPerKg: 15200,
+    supplyFactor: 1.0,
+    freshnessDiscountByGrade: {
+      A: 1.0,
+      B: 0.94,
+      C: 0.76,
+      D: 0.55,
+    },
+    harvestAdviceNote:
+      "Curah hujan tinggi menekan pasokan cabai Garut & Magelang. Grade A dan B sangat menguntungkan untuk dipanen minggu ini.",
+    series: [
+      { dayLabel: "H-20", dayOffset: -20, isForecast: false, pricesByGrade: { A: 24500, B: 17800, C: 7800, D: 2400 } },
+      { dayLabel: "H-15", dayOffset: -15, isForecast: false, pricesByGrade: { A: 25800, B: 18600, C: 8100, D: 2500 } },
+      { dayLabel: "H-10", dayOffset: -10, isForecast: false, pricesByGrade: { A: 26900, B: 19200, C: 8400, D: 2600 } },
+      { dayLabel: "H-5", dayOffset: -5, isForecast: false, pricesByGrade: { A: 27600, B: 19600, C: 8600, D: 2700 } },
+      { dayLabel: "Hari Ini", dayOffset: 0, isForecast: false, pricesByGrade: { A: 28500, B: 19820, C: 7800, D: 2500 } },
+      {
+        dayLabel: "H+5",
+        dayOffset: 5,
+        isForecast: true,
+        pricesByGrade: { A: 29800, B: 20700, C: 8200, D: 2650 },
+        forecastBand: { low: 27500, high: 32100 },
+      },
+      {
+        dayLabel: "H+10",
+        dayOffset: 10,
+        isForecast: true,
+        pricesByGrade: { A: 31200, B: 21600, C: 8600, D: 2800 },
+        forecastBand: { low: 28600, high: 33900 },
+      },
+      {
+        dayLabel: "H+14",
+        dayOffset: 14,
+        isForecast: true,
+        pricesByGrade: { A: 30400, B: 21100, C: 8400, D: 2700 },
+        forecastBand: { low: 27800, high: 33100 },
+      },
+    ],
+  },
+} as const;
+
+export const PLANTING_WINDOWS: readonly PlantingWindow[] = [
+  { month: "Jan", demandIndex: 74, recommendedCrop: "Cabai Keriting", weatherNote: "Puncak hujan · drainase tinggi", highlight: false },
+  { month: "Feb", demandIndex: 78, recommendedCrop: "Tomat Servo", weatherNote: "Lembap · waspada patek", highlight: false },
+  { month: "Mar", demandIndex: 88, recommendedCrop: "Sawi & Selada", weatherNote: "Peralihan musim · serapan MBG naik", highlight: true },
+  { month: "Apr", demandIndex: 84, recommendedCrop: "Buncis & Wortel", weatherNote: "Curah hujan turun · tanam serempak", highlight: false },
+  { month: "Mei", demandIndex: 72, recommendedCrop: "Kubis Dataran", weatherNote: "Awal kemarau · risiko banjir stok", highlight: false },
+  { month: "Jun", demandIndex: 68, recommendedCrop: "Tomat Apel", weatherNote: "Kemarau · atur jadwal pra-jual", highlight: false },
+  { month: "Jul", demandIndex: 82, recommendedCrop: "Selada Hidro/Lahan", weatherNote: "Tahun ajaran baru · kontrak SPPG", highlight: true },
+  { month: "Agu", demandIndex: 79, recommendedCrop: "Sawi Hijau", weatherNote: "Suhu malam dingin · mutu daun prima", highlight: false },
+  { month: "Sep", demandIndex: 86, recommendedCrop: "Cabai & Tomat", weatherNote: "Pasokan menipis · harga petani kuat", highlight: true },
+  { month: "Okt", demandIndex: 91, recommendedCrop: "Sawi & Kubis", weatherNote: "Awal hujan · permintaan katering naik", highlight: true },
+  { month: "Nov", demandIndex: 94, recommendedCrop: "Sawi Hijau (30 hari)", weatherNote: "Tanam minggu ini → panen puncak Des", highlight: true },
+  { month: "Des", demandIndex: 89, recommendedCrop: "Wortel & Kentang", weatherNote: "Libur akhir tahun · alihkan ke Horeka", highlight: false },
+] as const;

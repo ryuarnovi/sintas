@@ -1,26 +1,118 @@
+/**
+ * @file Global Stylesheet - Tailwind v4 configuration and SINTAS Agritech palette (#FEFEFE crisp white, #EBF4EC fresh mint-sage, #65AF3E leaf green, #0B6B3A canopy green, #014F2F deep forest green).
+ */
+
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Range of Agritech Whites to Deep Forest Greens (No Cream, No Lime) */
+  --bg-light: #FEFEFE;
+  --bg-surface: #EBF4EC;
+  --bg-mist: #DCECE0;
+  --bg-sage-soft: #EBF4EC;
+  --bg-dark: #014F2F;
+  --bg-dark-elevated: #0B6B3A;
+  --bg-ink: #072E1B;
+
+  /* Typography */
+  --text-primary-light: #072E1B;
+  --text-secondary-light: #355242;
+  --text-muted-light: #567564;
+  --text-primary-dark: #FEFEFE;
+  --text-secondary-dark: #D6EBD9;
+
+  /* Brand Greens */
+  --accent-forest: #014F2F;
+  --accent-canopy: #0B6B3A;
+  --accent-leaf: #65AF3E;
+  --accent-leaf-soft: #8FD16A;
+
+  /* Grade Semantic Colors (A, B, C, D) */
+  --grade-a: #65AF3E;
+  --grade-b: #0B6B3A;
+  --grade-c: #D48C2A;
+  --grade-d: #8C5A3C;
+
+  /* Hairline Borders */
+  --border-light: #C4DEC9;
+  --border-dark: rgba(254, 254, 254, 0.16);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-plus-jakarta), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  --color-bg-light: var(--bg-light);
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-mist: var(--bg-mist);
+  --color-bg-dark: var(--bg-dark);
+  --color-bg-dark-elevated: var(--bg-dark-elevated);
+
+  --color-accent-forest: var(--accent-forest);
+  --color-accent-canopy: var(--accent-canopy);
+  --color-accent-leaf: var(--accent-leaf);
+
+  --color-grade-a: var(--grade-a);
+  --color-grade-b: var(--grade-b);
+  --color-grade-c: var(--grade-c);
+  --color-grade-d: var(--grade-d);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  background-color: #FEFEFE;
+  color: #072E1B;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #FEFEFE;
+  color: #072E1B;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Keyboard focus ring */
+*:focus-visible {
+  outline: 2px solid #65AF3E;
+  outline-offset: 3px;
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom utility classes */
+.shadow-soft {
+  box-shadow:
+    0 18px 42px -16px rgba(1, 79, 47, 0.1),
+    0 4px 12px -4px rgba(1, 79, 47, 0.05);
+}
+
+.shadow-card-hover {
+  box-shadow:
+    0 24px 52px -16px rgba(1, 79, 47, 0.16),
+    0 8px 20px -6px rgba(1, 79, 47, 0.08);
+}
+
+/* Clean custom MapLibre popup styling */
+.sintas-map-popup .maplibregl-popup-content {
+  padding: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 1rem !important;
+}
+
+.sintas-map-popup .maplibregl-popup-tip {
+  border-top-color: #FEFEFE !important;
 }
