@@ -1,11 +1,14 @@
 /**
- * @file Root Layout - Configures Bricolage Grotesque, Geist, and Geist Mono fonts, Indonesian metadata, and smooth scroll provider.
+ * @file Root Layout - Configures Bricolage Grotesque, Geist, and Geist Mono fonts, global Navbar & Footer, smooth scroll provider, and SINTAS tokens.
  */
 
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google";
 import type { ReactNode } from "react";
+import { Footer } from "@/components/common/Footer";
 import { LenisProvider } from "@/components/common/LenisProvider";
+import { NavbarPill } from "@/components/common/NavbarPill";
+import { ScrollProgress } from "@/components/common/ScrollProgress";
 import { ToasterProvider } from "@/components/feedback/ToasterProvider";
 import "./globals.css";
 
@@ -66,9 +69,12 @@ export default function RootLayout({
       lang="id"
       className={`${bricolage.variable} ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-bg text-fg">
+      <body className="min-h-full flex flex-col bg-[#FEFEFE] text-[#072E1B]">
         <LenisProvider>
-          {children}
+          <NavbarPill />
+          <ScrollProgress />
+          <div className="flex-1 flex flex-col">{children}</div>
+          <Footer />
           <ToasterProvider />
         </LenisProvider>
       </body>

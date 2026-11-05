@@ -1,15 +1,9 @@
 /**
- * @file Root Loading UI - Suspense fallback skeleton for route transitions.
+ * @file Root Loading UI - Minimalist white loading screen with official SINTAS logo, wordmark, and smooth in/out animation.
  */
 
-import { Skeleton } from "@/components/feedback/Skeleton";
+import { SintasLoadingView } from "@/components/feedback/Skeleton";
 
 export default function Loading() {
-  return (
-    <div className="min-h-screen bg-paper-50 px-6 py-32">
-      <div className="mx-auto max-w-7xl space-y-6">
-        <Skeleton label="Memuat halaman SINTAS..." className="h-96 w-full" />
-      </div>
-    </div>
-  );
+  return <SintasLoadingView />;
 }

@@ -13,7 +13,6 @@ export const NAV_ITEMS: readonly NavItem[] = [
   { id: "harga", label: "Harga", href: "#harga", theme: "mist" },
   { id: "masalah", label: "Dampak", href: "#masalah", theme: "light" },
   { id: "faq", label: "FAQ", href: "#faq", theme: "mist" },
-  { id: "peta", label: "Peta", href: "/peta", theme: "mist" },
 ] as const;
 
 export interface SectionThemeEntry {

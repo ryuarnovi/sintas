@@ -142,13 +142,13 @@ export function HeroSection() {
                 Masuk
               </ButtonLink>
               <ButtonLink
-                href="/peta"
+                href="#cara-kerja"
                 variant="secondary"
                 size="lg"
                 className="border-[#C4DEC9] bg-[#FEFEFE]/95 hover:bg-[#EBF4EC]"
-                trailingIcon={<MapPin className="size-4 text-[#014F2F]" />}
+                trailingIcon={<ArrowRight className="size-4 text-[#014F2F]" />}
               >
-                Buka Peta Stok
+                Jelajahi Solusi
               </ButtonLink>
             </div>
           </div>

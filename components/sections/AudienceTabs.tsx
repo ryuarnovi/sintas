@@ -208,10 +208,10 @@ export function AudienceTabs() {
             </h3>
           </div>
           <Link
-            href="/peta"
+            href="/login"
             className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#014F2F] hover:text-[#65AF3E]"
           >
-            <span>Buka peta stok layar penuh</span>
+            <span>Masuk portal pemesanan stok</span>
             <ArrowUpRight aria-hidden="true" className="size-4" />
           </Link>
         </div>
@@ -271,7 +271,7 @@ export function AudienceTabs() {
             {matchingLots.map((lot) => (
               <Link
                 key={lot.id}
-                href="/peta"
+                href="/login"
                 className="group flex flex-col justify-between rounded-2xl border border-[#C4DEC9] bg-[#EBF4EC] p-4 transition-all hover:border-[#014F2F] hover:bg-[#DCECE0]"
               >
                 <div className="flex items-center justify-between gap-2">

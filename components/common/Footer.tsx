@@ -64,12 +64,12 @@ export function Footer() {
             <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs sm:text-sm text-[#D6EBD9]">
               {NAV_ITEMS.map((item) => (
                 <li key={item.id}>
-                  <a
-                    href={item.href}
+                  <Link
+                    href={item.href.startsWith("#") ? `/${item.href}` : item.href}
                     className="transition-colors hover:text-[#8FD16A]"
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

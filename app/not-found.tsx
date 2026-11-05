@@ -1,38 +1,54 @@
 /**
- * @file Not Found Page - Clean minimalist 404 route in #FEFEFE and #014F2F (also served when clicking Masuk /login).
+ * @file Global Not Found (404) Page - Centered minimalist 404 page inside RootLayout (with Navbar & Footer), bespoke SINTAS unplugged-cable illustration, and Kembali ke Beranda CTA.
  */
 
-import { ArrowLeft } from "lucide-react";
-import { SintasMark } from "@/components/common/SintasMark";
-import { ButtonLink } from "@/components/ui/Button";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-[#FEFEFE] px-6 text-center text-[#012A19]">
-      <div className="max-w-lg rounded-3xl border border-[#014F2F]/12 bg-[#F6F9F7] p-10 sm:p-12 flex flex-col items-center">
-        <SintasMark size={48} />
-        <p className="mt-6 text-xs font-semibold uppercase tracking-[0.14em] text-[#014F2F]">
-          404 · Halaman Belum Tersedia
-        </p>
-        <h1 className="mt-3 font-display text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-[#012A19]">
-          Akses akun pelanggan sedang disiapkan.
+    <main className="flex flex-1 w-full flex-col items-center justify-center bg-[#FEFEFE] px-6 pt-28 pb-16 sm:pt-32 sm:pb-20 text-center text-[#072E1B]">
+      <div className="mx-auto flex w-full max-w-4xl flex-col items-center">
+        {/* Top Large 404 Title */}
+        <h1 className="font-display text-6xl sm:text-7xl md:text-8xl font-bold tracking-[-0.04em] text-[#072E1B] leading-none">
+          404
         </h1>
-        <p className="mt-3 text-sm sm:text-base text-[#4A6155] leading-relaxed">
-          Portal langganan dan masuk akun SINTAS sedang dalam tahap finalisasi.
-          Silakan kembali ke halaman utama untuk menjelajahi fitur peta stok dan
-          simulasi AI.
-        </p>
-        <div className="mt-8">
-          <ButtonLink
-            href="/"
-            variant="primary"
-            size="lg"
-            leadingIcon={<ArrowLeft aria-hidden="true" className="size-4" />}
-          >
-            Kembali ke Beranda
-          </ButtonLink>
+
+        {/* Center Bespoke SINTAS Unplugged Cable Illustration */}
+        <div className="mt-3 sm:mt-4 w-full max-w-[720px]">
+          <div className="relative aspect-[1338/640] w-full">
+            <Image
+              src="/images/sintas-404.webp"
+              alt="Ilustrasi 404 SINTAS - Petani memegang kabel jalur distribusi yang terputus"
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 720px"
+              className="object-contain"
+            />
+          </div>
+        </div>
+
+        {/* Bottom Copy & CTA matching reference layout */}
+        <div className="mt-4 sm:mt-5 flex flex-col items-center max-w-lg">
+          <h2 className="font-display text-2xl sm:text-4xl font-bold tracking-[-0.02em] text-[#072E1B]">
+            Sepertinya Anda tersesat
+          </h2>
+
+          <p className="mt-2.5 text-sm sm:text-base text-[#355242] leading-relaxed">
+            Halaman yang Anda cari tidak tersedia atau belum dibuka untuk akses publik!
+          </p>
+
+          {/* Primary Green CTA to Return Home */}
+          <div className="mt-7">
+            <Link
+              href="/"
+              className="inline-flex h-12 items-center justify-center rounded-lg bg-[#65AF3E] px-8 text-sm sm:text-base font-bold text-[#FEFEFE] shadow-[0_10px_24px_-6px_rgba(101,175,62,0.5)] transition-all hover:bg-[#014F2F] hover:shadow-[0_12px_28px_-6px_rgba(1,79,47,0.45)]"
+            >
+              Kembali ke Beranda
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }

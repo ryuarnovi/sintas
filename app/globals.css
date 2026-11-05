@@ -105,14 +105,45 @@ body {
     0 8px 20px -6px rgba(1, 79, 47, 0.08);
 }
 
-/* Clean custom MapLibre popup styling */
-.sintas-map-popup .maplibregl-popup-content {
-  padding: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  border-radius: 1rem !important;
+@keyframes sintas-loader-in {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
-.sintas-map-popup .maplibregl-popup-tip {
-  border-top-color: #FEFEFE !important;
+@keyframes sintas-brand-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+@keyframes page-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-sintas-loader-in {
+  animation: sintas-loader-in 0.32s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-sintas-brand-pulse {
+  animation: sintas-brand-pulse 1.8s ease-in-out infinite;
+}
+
+.animate-page-enter {
+  animation: page-enter 0.22s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }

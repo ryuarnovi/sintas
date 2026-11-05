@@ -60,12 +60,12 @@ export function FaqSection() {
                   Masuk Akun
                 </ButtonLink>
                 <ButtonLink
-                  href="/peta"
+                  href="#cara-kerja"
                   variant="secondaryDark"
                   size="md"
                   trailingIcon={<MapPin aria-hidden="true" className="size-4 text-[#8FD16A]" />}
                 >
-                  Buka Peta
+                  Pelajari Solusi
                 </ButtonLink>
               </div>
             </div>

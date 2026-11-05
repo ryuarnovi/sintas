@@ -18,13 +18,12 @@ import { cn } from "@/lib/utils";
 
 export function NavbarPill() {
   const pathname = usePathname();
-  const isPetaPage = pathname === "/peta" || pathname.startsWith("/peta/");
+  const isHomePage = pathname === "/";
   const { activeSectionId, isCompact } = useSectionTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
   const lenis = useLenis();
 
-  // If on /peta, force active nav item to "peta" instead of "beranda"
-  const effectiveActiveId = isPetaPage ? "peta" : activeSectionId;
+  const effectiveActiveId = isHomePage ? activeSectionId : "";
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -62,7 +61,7 @@ export function NavbarPill() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        isPetaPage || isCompact
+        !isHomePage || isCompact
           ? "bg-[#FEFEFE]/96 backdrop-blur-md border-b border-[#C4DEC9] py-3 shadow-[0_8px_30px_rgba(1,79,47,0.06)]"
           : "bg-gradient-to-b from-[#FEFEFE]/95 via-[#FEFEFE]/75 to-transparent py-4 sm:py-5"
       )}
@@ -104,7 +103,7 @@ export function NavbarPill() {
               const isActive = effectiveActiveId === item.id;
               const isRoute = item.href.startsWith("/");
               const resolvedHref =
-                !isRoute && isPetaPage
+                !isRoute && !isHomePage
                   ? item.href === "#beranda"
                     ? "/"
                     : `/${item.href}`
@@ -132,7 +131,7 @@ export function NavbarPill() {
 
               return (
                 <li key={item.id}>
-                  {isRoute || isPetaPage ? (
+                  {isRoute || !isHomePage ? (
                     <Link href={resolvedHref} className={linkClasses}>
                       {content}
                     </Link>
@@ -194,7 +193,7 @@ export function NavbarPill() {
                   const isActive = effectiveActiveId === item.id;
                   const isRoute = item.href.startsWith("/");
                   const resolvedHref =
-                    !isRoute && isPetaPage
+                    !isRoute && !isHomePage
                       ? item.href === "#beranda"
                         ? "/"
                         : `/${item.href}`
@@ -209,7 +208,7 @@ export function NavbarPill() {
 
                   return (
                     <li key={item.id}>
-                      {isRoute || isPetaPage ? (
+                      {isRoute || !isHomePage ? (
                         <Link
                           href={resolvedHref}
                           onClick={() => setMobileOpen(false)}

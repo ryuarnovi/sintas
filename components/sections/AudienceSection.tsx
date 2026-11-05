@@ -30,20 +30,20 @@ export function AudienceSection() {
 
           <div className="flex flex-wrap items-center gap-3 shrink-0">
             <ButtonLink
-              href="/peta"
+              href="/login"
               variant="primaryDark"
               size="md"
-              trailingIcon={<MapPin aria-hidden="true" className="size-4 text-[#014F2F]" />}
+              trailingIcon={<ArrowRight aria-hidden="true" className="size-4 text-[#014F2F]" />}
             >
-              Buka Peta Stok
+              Masuk Portal
             </ButtonLink>
             <ButtonLink
-              href="/login"
+              href="#ai"
               variant="secondaryDark"
               size="md"
-              trailingIcon={<ArrowRight aria-hidden="true" className="size-4 text-[#8FD16A]" />}
+              trailingIcon={<MapPin aria-hidden="true" className="size-4 text-[#8FD16A]" />}
             >
-              Masuk
+              Simulasi AI Grade
             </ButtonLink>
           </div>
         </div>
